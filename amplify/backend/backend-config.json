@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "weatherapp7d6e3911": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
