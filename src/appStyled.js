@@ -4,6 +4,7 @@ export const AppStyled = styled.div`
   ${props => {
     return css`
       display: flex;
+      height: 100%;
     `;
   }}
 `;
