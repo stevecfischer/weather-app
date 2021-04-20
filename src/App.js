@@ -1,17 +1,20 @@
-import logo from './logo.svg';
+import Grid from '@material-ui/core/Grid';
 import './App.css';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+import Sidebar from "./components/Sidebar";
+import Body from "./components/Body";
+import {AppStyled} from './appStyled'
+
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>We now have Auth!</h1>
-      </header>
-      <AmplifySignOut />
+      <AppStyled>
+          <Sidebar/>
+          <Body/>
+      </AppStyled>
     </div>
   );
 }
 
-export default withAuthenticator(App);
+export default App;
