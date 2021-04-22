@@ -1,12 +1,24 @@
 import React, {Fragment} from 'react';
-import Grid from '@material-ui/core/Grid';
 import PreviewDay from "./PreviewDay";
+import styled, {css} from 'styled-components';
 
-const PreviewDays = () => {
+export const PreviewDaysStyled = styled.div`
+  ${props => {
+    return css`
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 70px;
+      justify-content: space-around;
+    `;
+  }}`
+;
+
+
+const PreviewDays = ({unitType}) => {
   const metrics = {
     sunday: {
       date: "Sun 7, Jun",
-      icon: "icon here",
+      icon: "",
       tempLow: "15",
       tempHigh: "70",
     },
@@ -22,20 +34,26 @@ const PreviewDays = () => {
       tempLow: "50",
       tempHigh: "70",
     },
+    wednesday: {
+      date: "Tue 9, Jun",
+      icon: "icon here",
+      tempLow: "50",
+      tempHigh: "70",
+    },
+    thursday: {
+      date: "Tue 9, Jun",
+      icon: "icon here",
+      tempLow: "50",
+      tempHigh: "70",
+    },
   }
 
   return (
-    <Fragment>
-      <Grid container>
-        <Grid container justify="center">
-          {['Sunday', 'Monday', 'Tuesday'].map((value) => (
-            <Grid key={value} item>
-              <PreviewDay metrics={metrics[value.toLocaleLowerCase()]} />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-    </Fragment>
+    <PreviewDaysStyled>
+      {['Sunday', 'Monday', 'Tuesday', 'wednesday', 'thursday'].map((value) => (
+        <PreviewDay unitType={unitType} metrics={metrics[value.toLocaleLowerCase()]}/>
+      ))}
+    </PreviewDaysStyled>
   );
 };
 

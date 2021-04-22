@@ -1,19 +1,31 @@
-import Grid from '@material-ui/core/Grid';
-import './App.css';
+import React, {useEffect, useState} from 'react';
 import Sidebar from "./components/Sidebar";
-import Body from "./components/Body";
+import Main from "./components/Main";
 import {AppStyled} from './appStyled'
 
 
 function App() {
+  const [unitType, setUnitType] = useState("C");
 
+  // useEffect(() => {
+  //
+  // }, [unitType]);
+
+  const handleOnClick = (unit) => {
+    setUnitType(unit);
+  }
   return (
-    <div className="App">
-      <AppStyled>
-          <Sidebar/>
-          <Body/>
-      </AppStyled>
-    </div>
+    <AppStyled>
+        <Sidebar
+          className="sidebar"
+          unitType={unitType}
+        />
+        <Main
+          className="main"
+          unitType={unitType}
+          onUnitToggle={handleOnClick}
+        />
+    </AppStyled>
   );
 }
 

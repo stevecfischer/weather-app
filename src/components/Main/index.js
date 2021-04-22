@@ -1,22 +1,26 @@
-import React, {Fragment} from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import ToggleUnit from "../ToggleUnit";
 import PreviewDays from "../PreviewDays";
+import {MainStyled} from "./MainStyled";
+import TodaysHighlights from "../TodaysHighlights";
 
-const Body = () => {
+const Main = ({onUnitToggle, unitType}) => {
 
   return (
-    <Fragment>
-      <Grid container xs={8}>
-        <Grid item xs={12}>
-          <ToggleUnit />
-        </Grid>
-        <Grid item xs={12}>
-          <PreviewDays />
-        </Grid>
-      </Grid>
-    </Fragment>
+    <MainStyled>
+      <div className="main-container">
+        <ToggleUnit
+          unitType={unitType}
+          onUnitToggle={onUnitToggle}
+        />
+        <PreviewDays
+          unitType={unitType}
+        />
+        <TodaysHighlights/>
+      </div>
+    </MainStyled>
   );
 };
 
-export default Body;
+export default Main;
