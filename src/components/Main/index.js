@@ -5,7 +5,7 @@ import PreviewDays from "../PreviewDays";
 import {MainStyled} from "./MainStyled";
 import TodaysHighlights from "../TodaysHighlights";
 
-const Main = ({onUnitToggle, unitType}) => {
+const Main = ({dailyMetrics, todaysMetrics, onUnitToggle, unitType}) => {
 
   return (
     <MainStyled>
@@ -15,9 +15,10 @@ const Main = ({onUnitToggle, unitType}) => {
           onUnitToggle={onUnitToggle}
         />
         <PreviewDays
+          dailyMetrics={dailyMetrics}
           unitType={unitType}
         />
-        <TodaysHighlights/>
+        <TodaysHighlights todaysMetrics={todaysMetrics}/>
       </div>
     </MainStyled>
   );

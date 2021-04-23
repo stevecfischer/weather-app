@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled, {css} from 'styled-components';
-import {metricData} from "../../metricData";
+
 
 const TodaysHighlightsStyled = styled.div`
   ${props => {
@@ -67,12 +67,12 @@ const HighlightBoxContainer = styled.div`
 `;
 
 
-const TodaysHighlights = () => {
+const TodaysHighlights = ({todaysMetrics}) => {
   return (
     <TodaysHighlightsStyled>
       <div className="section-heading">Today's Highlights</div>
       <HighlightBoxContainer>
-        {metricData.map((metric, i) => (
+        {todaysMetrics.map((metric, i) => (
           <HighlightBoxStyled>
             <div className="highlight-box-heading">{metric.heading}</div>
             <div className="highlight-box-md metric-data">{metric.data}</div>

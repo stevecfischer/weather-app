@@ -27,12 +27,12 @@ const SearchStyled = styled.div`
   }}
 `;
 
-const Search = () => {
+const Search = ({isSidebarSearchView, handleOnSidebarViewChange}) => {
   return (
     <SearchStyled>
-      <div className="search-button">
+      <button className="search-button" onClick={() => handleOnSidebarViewChange(!isSidebarSearchView)}>
         Search
-      </div>
+      </button>
       <div className="search-button-icon">I</div>
     </SearchStyled>
   );
