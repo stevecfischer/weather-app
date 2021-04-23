@@ -5,46 +5,73 @@ import CurrentTemp from "../CurrentTemp";
 import CurrentWeather from "../CurrentWeather";
 import TodaysDate from "../TodaysDate";
 import SearchedCity from "../SearchedCity";
-import SelectedCityOption from '../SelectedCityOption';
+import SelectCity from '../SelectCity';
 import heavyRain from "../../img/HeavyRain.png";
 
 
-
-const Sidebar = ({isSidebarSearchView, handleOnSidebarViewChange, unitType}) => {
+const Sidebar = ({metrics, handleOnCitySubmit, isSidebarSearchView, handleOnSidebarViewChange, unitType}) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [city, setCity] = useState(null);
+
+  const handleOnCityChange = (e) => {
+    setCity(e.target.value);
+  }
 
   return (
     <SidebarStyled>
-      {!isSidebarSearchView && (
-        <>
-          <Search
-            isSidebarSearchView={isSidebarSearchView}
-            handleOnSidebarViewChange={handleOnSidebarViewChange}
-          />
-          <img className="current-weather-icon" src={heavyRain}/>
-          <CurrentTemp
-            unitType={unitType}
-          />
-          <CurrentWeather/>
-          <TodaysDate/>
-          <SearchedCity/>
-        </>
-      )}
+      <div className="sidebar-container">
+        {!isSidebarSearchView && (
+          <>
+            <Search
+              isSidebarSearchView={isSidebarSearchView}
+              handleOnSidebarViewChange={handleOnSidebarViewChange}
+            />
+            <img className="current-weather-icon" src={heavyRain}/>
+            <CurrentTemp
+              metrics={metrics}
+              unitType={unitType}
+            />
+            <CurrentWeather
+              metric={metrics.weather[0].main}
+            />
+            <TodaysDate/>
+            <SearchedCity metric={metrics.name}/>
+          </>
+        )}
+      </div>
       {isSidebarSearchView && (
         <>
-          <div className="close-button" onClick={()=> handleOnSidebarViewChange(!isSidebarSearchView)}>X</div>
-          <div className="searchBarContainer">
+          <div className="close-button" onClick={() => handleOnSidebarViewChange(!isSidebarSearchView)}>X</div>
+          <div className="search-bar-container">
             <div className="search-bar">
-              <input className="city-search" value="Charlotte" />
-              <button className="city-search-submit">Search</button>
+              <input className="city-search" value={city} onChange={(e) => handleOnCityChange(e) }/>
+              <button
+                className="city-search-submit"
+                onClick={
+                  () => {
+                    handleOnCitySubmit(city)
+                    handleOnSidebarViewChange(!isSidebarSearchView)
+                  }
+                }
+              >
+                Search
+              </button>
             </div>
           </div>
-          <SelectedCityOption
+          <SelectCity
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
           />
+          <div className="previous-searched-cities">
+            <ul>
+              <li><a>Charlotte</a></li>
+              <li><a>Utica</a></li>
+              <li><a>Branson</a></li>
+            </ul>
+          </div>
         </>
       )}
+
     </SidebarStyled>
   );
 };

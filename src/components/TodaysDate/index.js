@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import Grid from '@material-ui/core/Grid';
-
+import getDate from "../../helpers/getDate";
 import styled, { css } from 'styled-components';
 
 const TodaysDateStyled = styled.div`
@@ -38,7 +38,7 @@ const TodaysDate = () => {
     <TodaysDateStyled>
       <div className="today-label">Today</div>
       <div className="today-dot">.</div>
-      <div className="today-date">Fri, 5 Jun</div>
+      <div className="today-date">{`${getDate().dayOfWeek}, ${getDate().dayOfMonth} ${getDate().month}`}</div>
     </TodaysDateStyled>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import styled, { css } from 'styled-components';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -7,9 +8,18 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-const SelectedCityOption = ({selectedOption, setSelectedOption}) => {
+
+export const SelectCityStyled = styled.div`
+  ${props => {
+    return css`
+      margin-bottom: 50px;
+    `;
+  }}
+`;
+
+const SelectCity = ({selectedOption, setSelectedOption}) => {
   return (
-    <>
+    <SelectCityStyled>
       <div className="city-select-dropdown">
         <Select
           defaultValue={selectedOption}
@@ -17,8 +27,8 @@ const SelectedCityOption = ({selectedOption, setSelectedOption}) => {
           options={options}
         />
       </div>
-    </>
+    </SelectCityStyled>
   );
 };
 
-export default SelectedCityOption;
+export default SelectCity;

@@ -13,7 +13,7 @@ const SearchStyled = styled.div`
         text-align: center;
         padding: 10px 18px;
         background-color: #6E707A;
-        //height: 40px;
+        cursor: pointer;
       }
       
       .search-button-icon {

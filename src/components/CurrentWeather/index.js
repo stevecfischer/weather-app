@@ -17,10 +17,10 @@ export const CurrentWeatherStyled = styled.div`
 `;
 
 
-const CurrentWeather = () => {
+const CurrentWeather = ({metric}) => {
   return (
     <CurrentWeatherStyled>
-      Shower
+      {metric}
     </CurrentWeatherStyled>
   );
 };

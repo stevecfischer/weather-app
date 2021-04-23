@@ -24,10 +24,10 @@ const CurrentTempStyled = styled.div`
   }}
 `;
 
-const CurrentTemp = ({unitType}) => {
+const CurrentTemp = ({metrics, unitType}) => {
   return (
     <CurrentTempStyled>
-      <span className="tempInt">15</span>
+      <span className="tempInt">{metrics.main.temp.toFixed(0)}</span>
       <span className="unitType">&#176; {unitType}</span>
     </CurrentTempStyled>
   );

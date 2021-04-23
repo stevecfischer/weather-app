@@ -19,11 +19,11 @@ export const SearchedCityStyled = styled.div`
 
 
 
-const SearchedCity = () => {
+const SearchedCity = ({metric}) => {
   return (
     <SearchedCityStyled>
       <div className="searched-city-pin">P</div>
-      <div className="searched-city-name">Helsinki</div>
+      <div className="searched-city-name">{metric}</div>
     </SearchedCityStyled>
   );
 };
