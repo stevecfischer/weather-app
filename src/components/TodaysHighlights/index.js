@@ -75,11 +75,11 @@ const TodaysHighlights = ({todayWeatherData}) => {
       <HighlightBoxContainer>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Wind Status</div>
-          <div className="highlight-box-md metric-data">{todayWeatherData.wind.speed.toFixed(0)} mph</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.wind_speed.toFixed(0)} mph</div>
         </HighlightBoxStyled>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Humidity</div>
-          <div className="highlight-box-md metric-data">{todayWeatherData.main.humidity}%</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.humidity}%</div>
         </HighlightBoxStyled>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Visibility</div>
@@ -87,7 +87,7 @@ const TodaysHighlights = ({todayWeatherData}) => {
         </HighlightBoxStyled>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Air Pressure</div>
-          <div className="highlight-box-md metric-data">{(todayWeatherData.main.pressure/100).toFixed(0)} mb</div>
+          <div className="highlight-box-md metric-data">{(todayWeatherData.pressure/100).toFixed(0)} mb</div>
         </HighlightBoxStyled>
       </HighlightBoxContainer>
     </TodaysHighlightsStyled>

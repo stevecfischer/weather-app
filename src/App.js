@@ -15,6 +15,7 @@ function App() {
   const [sidebarError, setSidebarError] = useState(false);
   // const [isLoaded, setIsLoaded] = useState(false);
   const [location, setLocation] = useState(null);
+  const [activeLongLat, setActiveLongLat] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [fiveDayWeatherData, setFiveDayWeatherData] = useState(null);
   const [todayWeatherData, setTodayWeatherData] = useState(null);
@@ -33,13 +34,15 @@ function App() {
   useEffect(() => {
       if (location) {
         getZip(location)
-          .then(r => {
-            getWeather(r.zip_codes[0], activeUnitType)
+          .then(longAndLat => {
+            console.log(longAndLat, 'arg');
+            getWeather(longAndLat.lat, longAndLat.lng, activeUnitType)
               .then(rW => {
-                setActiveCity(rW.city.name);
+                console.log(rW, 'rwrwrw');
+                setActiveCity(longAndLat.city);
                 setWeatherData(rW);
-                setFiveDayWeatherData(rW?.list.slice(0, 5));
-                setTodayWeatherData(rW?.list[0]);
+                setFiveDayWeatherData(rW?.daily.slice(0, 5));
+                setTodayWeatherData(rW?.current);
               })
               .catch(e => {
                 console.error(e);
@@ -62,12 +65,17 @@ function App() {
     }
   }, [todayWeatherData])
 
+  useEffect(() => {
+    console.log(activeLongLat, 'activeLongLat');
+  }, [setActiveLongLat]);
+
 
   return (
     <AppStyled>
       <UnitTypeContext.Provider value={UnitTypeProviderValue}>
         <SidebarStyled>
           <div className="sidebar-container">
+            {/*{activeLongLat}*/}
             {isSidebarSearchView ? (
               <SidebarSearch
                 todayWeatherData={todayWeatherData}

@@ -16,6 +16,7 @@ export const FiveDayForecastStyled = styled.div`
 
 
 const FiveDayForecast = ({fiveDayWeatherData}) => {
+  console.log(fiveDayWeatherData, 'fiveDayWeatherData');
   return (
     <FiveDayForecastStyled>
       {fiveDayWeatherData.map((day) => {
@@ -23,8 +24,8 @@ const FiveDayForecast = ({fiveDayWeatherData}) => {
           <DayForecast
             date={getDate(day.dt)}
             dayWeather={day.weather[0]}
-            dayTempMax={day.main.temp_max}
-            dayTempMin={day.main.temp_min}
+            dayTempMax={day.temp.max}
+            dayTempMin={day.temp.min}
           />
         )
       })}

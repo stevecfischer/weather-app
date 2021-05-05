@@ -34,7 +34,7 @@ export const SidebarWeather = ({
             src={`http://openweathermap.org/img/wn/${todayWeatherData.weather[0].icon}@2x.png`}
           />
           <CurrentTemp
-            currentTemp={todayWeatherData.main.temp}
+            currentTemp={todayWeatherData.temp}
             // unitType={unitType}
           />
           <div className="weatherDesc">{todayWeatherData.weather[0].main}</div>
