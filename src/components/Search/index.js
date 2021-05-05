@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled, {css} from 'styled-components';
 
 const SearchStyled = styled.div`
@@ -27,10 +27,10 @@ const SearchStyled = styled.div`
   }}
 `;
 
-const Search = ({isSidebarSearchView, handleOnSidebarViewChange}) => {
+const Search = ({handleOnCloseWeatherView}) => {
   return (
     <SearchStyled>
-      <button className="search-button" onClick={() => handleOnSidebarViewChange(!isSidebarSearchView)}>
+      <button className="search-button" onClick={() => handleOnCloseWeatherView()}>
         Search
       </button>
       <div className="search-button-icon">I</div>

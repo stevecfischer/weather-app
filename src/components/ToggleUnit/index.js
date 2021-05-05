@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import Grid from '@material-ui/core/Grid';
+import React  from 'react';
 import styled, {css} from 'styled-components';
 
 const ToggleUnitStyled = styled.div`

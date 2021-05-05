@@ -67,20 +67,28 @@ const HighlightBoxContainer = styled.div`
 `;
 
 
-const TodaysHighlights = ({todaysMetrics}) => {
+const TodaysHighlights = ({todayWeatherData}) => {
+  console.log(todayWeatherData, 'todayWeatherData');
   return (
     <TodaysHighlightsStyled>
       <div className="section-heading">Today's Highlights</div>
       <HighlightBoxContainer>
-        {todaysMetrics.map((metric, i) => (
-          <HighlightBoxStyled>
-            <div className="highlight-box-heading">{metric.heading}</div>
-            <div className="highlight-box-md metric-data">{metric.data}</div>
-            {metric.additional !== "" && (
-              <div className="highlight-box-additional">{metric.additional}</div>
-            )}
-          </HighlightBoxStyled>
-        ))}
+        <HighlightBoxStyled>
+          <div className="highlight-box-heading">Wind Status</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.wind.speed}/mph</div>
+        </HighlightBoxStyled>
+        <HighlightBoxStyled>
+          <div className="highlight-box-heading">Humidity</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.main.humidity}%</div>
+        </HighlightBoxStyled>
+        <HighlightBoxStyled>
+          <div className="highlight-box-heading">Visibility</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.visibility}miles</div>
+        </HighlightBoxStyled>
+        <HighlightBoxStyled>
+          <div className="highlight-box-heading">Air Pressure</div>
+          <div className="highlight-box-md metric-data">{todayWeatherData.main.pressure}mb</div>
+        </HighlightBoxStyled>
       </HighlightBoxContainer>
     </TodaysHighlightsStyled>
   );

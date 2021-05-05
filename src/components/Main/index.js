@@ -1,27 +1,37 @@
-import React, {useEffect, useState} from 'react';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
 import ToggleUnit from "../ToggleUnit";
-import PreviewDays from "../PreviewDays";
+import FiveDayForecast from "../FiveDayForecast";
 import {MainStyled} from "./MainStyled";
 import TodaysHighlights from "../TodaysHighlights";
 
-const Main = ({dailyMetrics, todaysMetrics, onUnitToggle, unitType}) => {
-
+const Main = ({fiveDayWeatherData, onLoadText, setUnitType, unitType, todayWeatherData}) => {
+  console.log(fiveDayWeatherData, 'fiveDayForecast');
   return (
     <MainStyled>
       <div className="main-container">
-        <ToggleUnit
-          unitType={unitType}
-          onUnitToggle={onUnitToggle}
-        />
-        <PreviewDays
-          dailyMetrics={dailyMetrics}
-          unitType={unitType}
-        />
-        <TodaysHighlights todaysMetrics={todaysMetrics}/>
+        {(fiveDayWeatherData && todayWeatherData) ? (
+          <>
+            <ToggleUnit
+              unitType={unitType}
+              setUnitType={setUnitType}
+            />
+            <FiveDayForecast
+              fiveDayWeatherData={fiveDayWeatherData}
+            />
+            <TodaysHighlights
+              todayWeatherData={todayWeatherData}
+            />
+          </>
+        ) : (
+          <h1>{onLoadText}</h1>
+        )}
+
       </div>
     </MainStyled>
   );
 };
 
 export default Main;
+
+
+

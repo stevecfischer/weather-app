@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 
-export const PreviewDayStyled = styled.div`
+export const DayForecastStyled = styled.div`
   ${props => {
     return css`
       border-radius: 0;

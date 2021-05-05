@@ -1,73 +1,96 @@
 import React, {useEffect, useState} from 'react';
-import Sidebar from "./components/Sidebar";
+import SidebarSearch from "./components/SidebarSearch";
 import Main from "./components/Main";
 import {AppStyled} from './appStyled'
-import {todaysMetrics, dailyMetrics} from "./metricData";
+// import {todaysMetrics, dailyMetrics} from "./metricData";
+import {getZip} from "./helpers/getZip";
+import {getWeather} from "./helpers/getWeather";
+import {SidebarWeather} from "./components/SidebarWeather";
+import {SidebarStyled} from "./components/SidebarWeather/sidebarStyled";
 
 function App() {
-  const weatherAPI = 'adc5a16466b1ffa37087a9d4cb31dc30';
-  const [unitType, setUnitType] = useState("f");
-  const [isSidebarSearchView, setIsSidebarSearchView] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("13502");
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [metrics, setMetricResponse] = useState(null);
 
-  const handleOnCitySelect = (city) => {
-    setSelectedCity(city);
+  const [unitType, setUnitType] = useState("imperial");
+  const [isSidebarSearchView, setIsSidebarSearchView] = useState(true);
+  const [sidebarError, setSidebarError] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
+  const [fiveDayWeatherData, setFiveDayWeatherData] = useState(null);
+  const [todayWeatherData, setTodayWeatherData] = useState(null);
+  const [activeCity, setActiveCity] = useState(null);
+
+  const handleOnLocationSubmit = (searchStr) => {
+    console.log(searchStr, 'searchStr');
+    setLocation(searchStr);
   }
 
-  const handleOnClick = (unit) => {
+  const handleOnUnitToggle = (unit) => {
     setUnitType(unit);
   }
 
   useEffect(() => {
-    const unit = unitType === "f" ? "imperial" : "metric";
-    fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${selectedCity}&appid=adc5a16466b1ffa37087a9d4cb31dc30&units=${unit}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setMetricResponse(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [selectedCity]);
+      if (location) {
+        getZip(location)
+          .then(r => {
+            getWeather(r.zip_codes[0], "imperial")
+              .then(rW => {
+                setActiveCity(rW.city.name);
+                setWeatherData(rW);
+                setFiveDayWeatherData(rW?.list.slice(0, 5));
+                setTodayWeatherData(rW?.list[0]);
+              })
+              .catch(e => {
+                console.error(e);
+                setSidebarError(true)
+              })
+          })
+          .catch(e => {
+            console.error(e);
+          })
+      }
+    },
+    [location]
+  );
 
-  const handleOnCitySubmit = (city) => {
-    setSelectedCity(city);
-  }
+  useEffect(() => {
+    if (todayWeatherData) {
+      setIsSidebarSearchView(false);
+    } else {
+      setSidebarError(true)
+    }
+  }, [todayWeatherData])
 
-  console.log(metrics, "metrics");
   return (
     <AppStyled>
-      {metrics && (
-        <>
-          <Sidebar
-            metrics={metrics}
-            handleOnCitySubmit={handleOnCitySubmit}
-            selectedCity={selectedCity}
-            handleOnCitySelect={handleOnCitySelect}
-            isSidebarSearchView={isSidebarSearchView}
-            handleOnSidebarViewChange={setIsSidebarSearchView}
-            className="sidebar"
-            unitType={unitType}
-          />
-          <Main
-            todaysMetrics={todaysMetrics}
-            dailyMetrics={dailyMetrics}
-            className="main"
-            unitType={unitType}
-            onUnitToggle={handleOnClick}
-          />
-        </>
-      )}
+      <SidebarStyled>
+        <div className="sidebar-container">
+          {isSidebarSearchView ? (
+            <SidebarSearch
+              todayWeatherData={todayWeatherData}
+              setIsSidebarSearchView={setIsSidebarSearchView}
+              sidebarError={sidebarError}
+              handleOnLocationSubmit={handleOnLocationSubmit}
+              className="sidebar"
+            />
+          ) : (
+            <SidebarWeather
+              setIsSidebarSearchView={setIsSidebarSearchView}
+              todayWeatherData={todayWeatherData}
+              unitType={unitType}
+              activeCity={activeCity}
+            />
+          )}
+        </div>
+      </SidebarStyled>
+      <Main
+        unitType={unitType}
+        onUnitToggle={setUnitType}
+        className="main"
+        onLoadText="Enter City, State and click Search"
+        fiveDayWeatherData={fiveDayWeatherData}
+        todayWeatherData={todayWeatherData}
+      />
     </AppStyled>
   );
 }

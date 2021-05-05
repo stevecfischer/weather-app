@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled, {css} from 'styled-components';
 
 const CurrentTempStyled = styled.div`
@@ -24,11 +24,11 @@ const CurrentTempStyled = styled.div`
   }}
 `;
 
-const CurrentTemp = ({metrics, unitType}) => {
+const CurrentTemp = ({currentTemp}) => {
   return (
     <CurrentTempStyled>
-      <span className="tempInt">{metrics.main.temp.toFixed(0)}</span>
-      <span className="unitType">&#176; {unitType}</span>
+      <span className="tempInt">{currentTemp.toFixed(0)}</span>
+      {/*<span className="unitType">&#176; {unitType}</span>*/}
     </CurrentTempStyled>
   );
 };

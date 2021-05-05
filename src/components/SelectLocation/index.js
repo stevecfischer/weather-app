@@ -9,7 +9,7 @@ const options = [
 ];
 
 
-export const SelectCityStyled = styled.div`
+export const SelectLocationStyled = styled.div`
   ${props => {
     return css`
       margin-bottom: 50px;
@@ -17,9 +17,9 @@ export const SelectCityStyled = styled.div`
   }}
 `;
 
-const SelectCity = ({selectedOption, setSelectedOption}) => {
+const SelectLocation = ({selectedOption, setSelectedOption}) => {
   return (
-    <SelectCityStyled>
+    <SelectLocationStyled>
       <div className="city-select-dropdown">
         <Select
           defaultValue={selectedOption}
@@ -27,8 +27,8 @@ const SelectCity = ({selectedOption, setSelectedOption}) => {
           options={options}
         />
       </div>
-    </SelectCityStyled>
+    </SelectLocationStyled>
   );
 };
 
-export default SelectCity;
+export default SelectLocation;
