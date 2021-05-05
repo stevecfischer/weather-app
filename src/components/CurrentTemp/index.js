@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled, {css} from 'styled-components';
+import {UnitTypeContext} from "../../providers/unitType";
 
 const CurrentTempStyled = styled.div`
   ${props => {
@@ -25,10 +26,11 @@ const CurrentTempStyled = styled.div`
 `;
 
 const CurrentTemp = ({currentTemp}) => {
+  const {unitTypeSymbol} = useContext(UnitTypeContext);
   return (
     <CurrentTempStyled>
       <span className="tempInt">{currentTemp.toFixed(0)}</span>
-      {/*<span className="unitType">&#176; {unitType}</span>*/}
+      <span className="unitType">&#176; {unitTypeSymbol()}</span>
     </CurrentTempStyled>
   );
 };

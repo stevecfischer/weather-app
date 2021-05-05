@@ -1,5 +1,7 @@
-import React  from 'react';
+import React, {useContext} from 'react';
 import styled, {css} from 'styled-components';
+import {UnitTypeContext} from "../../providers/unitType";
+
 
 const ToggleUnitStyled = styled.div`
   ${props => {
@@ -28,15 +30,21 @@ const ToggleUnitStyled = styled.div`
 ;
 
 
-const ToggleUnit = ({unitType, onUnitToggle}) => {
-
+const ToggleUnit = () => {
+  const {activeUnitType, setActiveUnitType} = useContext(UnitTypeContext);
   return (
-    <ToggleUnitStyled unitType={unitType}>
-      <div className={`celsius unitCircle ${unitType === "C" ? "unitCircle-active" : ""}`}
-           onClick={() => onUnitToggle("C")}>C
+    <ToggleUnitStyled>
+      <div
+        className={`celsius unitCircle ${activeUnitType === "metric" ? "unitCircle-active" : ""}`}
+        onClick={() => setActiveUnitType("metric")}
+      >
+        C
       </div>
-      <div className={`celsius unitCircle ${unitType === "F" ? "unitCircle-active" : ""}`}
-           onClick={() => onUnitToggle("F")}>F
+      <div
+        className={`celsius unitCircle ${activeUnitType === "imperial" ? "unitCircle-active" : ""}`}
+        onClick={() => setActiveUnitType("imperial")}
+      >
+        F
       </div>
     </ToggleUnitStyled>
   );

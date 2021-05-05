@@ -4,17 +4,15 @@ import FiveDayForecast from "../FiveDayForecast";
 import {MainStyled} from "./MainStyled";
 import TodaysHighlights from "../TodaysHighlights";
 
-const Main = ({fiveDayWeatherData, onLoadText, setUnitType, unitType, todayWeatherData}) => {
+const Main = ({fiveDayWeatherData, onLoadText, todayWeatherData}) => {
   console.log(fiveDayWeatherData, 'fiveDayForecast');
+
   return (
     <MainStyled>
       <div className="main-container">
         {(fiveDayWeatherData && todayWeatherData) ? (
           <>
-            <ToggleUnit
-              unitType={unitType}
-              setUnitType={setUnitType}
-            />
+            <ToggleUnit />
             <FiveDayForecast
               fiveDayWeatherData={fiveDayWeatherData}
             />

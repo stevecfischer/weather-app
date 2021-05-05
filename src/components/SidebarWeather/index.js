@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Search from "../Search";
 import CurrentTemp from "../CurrentTemp";
 import TodaysDate from "../TodaysDate";
 import SearchedCity from "../SearchedCity";
 import getDate from "../../helpers/getDate";
+import {UnitTypeContext} from "../../providers/unitType";
 
 
 export const SidebarWeather = ({
@@ -12,6 +13,8 @@ export const SidebarWeather = ({
                                  setIsSidebarSearchView,
                                  activeCity,
                                }) => {
+  const bar = useContext(UnitTypeContext)
+  console.log(bar, 'unitcontext-bar');
   const todayDate = getDate(todayWeatherData.dt)
   const handleOnCloseWeatherView = () => {
     setIsSidebarSearchView(true);

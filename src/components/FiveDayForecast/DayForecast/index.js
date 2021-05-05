@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {DayForecastStyled} from "./DayForecastStyled";
+import {UnitTypeContext} from "../../../providers/unitType";
 
 const DayForecast = ({date,dayWeather, dayTempMin, dayTempMax}) => {
+  const {unitTypeSymbol} = useContext(UnitTypeContext);
   return (
     <DayForecastStyled>
       <div className="date">{date}</div>
@@ -12,8 +14,8 @@ const DayForecast = ({date,dayWeather, dayTempMin, dayTempMax}) => {
         />
       </div>
       <div className="tempContainer">
-        <div className="temp tempLow">{dayTempMin}&#176;</div>
-        <div className="temp tempHigh">{dayTempMax}&#176;</div>
+        <div className="temp tempLow">{dayTempMin.toFixed(0)}&#176;{unitTypeSymbol()}</div>
+        <div className="temp tempHigh">{dayTempMax.toFixed(0)}&#176;{unitTypeSymbol()}</div>
       </div>
     </DayForecastStyled>
   );

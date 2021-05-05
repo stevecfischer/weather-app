@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 
 const SidebarSearch = ({setIsSidebarSearchView, handleOnLocationSubmit, todayWeatherData}) => {
   const searchInput = useRef(null)
-  const [searchStr, setSearchString] = useState(null);
+  const [searchStr, setSearchString] = useState("utica, ny");
 
   const handleOnLocationChange = (e) => {
     setSearchString(e.target.value);

@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import SidebarSearch from "./components/SidebarSearch";
 import Main from "./components/Main";
 import {AppStyled} from './appStyled'
-// import {todaysMetrics, dailyMetrics} from "./metricData";
 import {getZip} from "./helpers/getZip";
 import {getWeather} from "./helpers/getWeather";
+import {getUnitTypeSymbol} from "./helpers/getUnitTypeSymbol";
 import {SidebarWeather} from "./components/SidebarWeather";
 import {SidebarStyled} from "./components/SidebarWeather/sidebarStyled";
+import {UnitTypeContext} from "./providers/unitType";
 
 function App() {
-
-  const [unitType, setUnitType] = useState("imperial");
+  const [activeUnitType, setActiveUnitType] = useState("imperial");
   const [isSidebarSearchView, setIsSidebarSearchView] = useState(true);
   const [sidebarError, setSidebarError] = useState(false);
   // const [isLoaded, setIsLoaded] = useState(false);
@@ -20,20 +20,21 @@ function App() {
   const [todayWeatherData, setTodayWeatherData] = useState(null);
   const [activeCity, setActiveCity] = useState(null);
 
-  const handleOnLocationSubmit = (searchStr) => {
-    console.log(searchStr, 'searchStr');
-    setLocation(searchStr);
+  const UnitTypeProviderValue = {
+    activeUnitType,
+    setActiveUnitType,
+    unitTypeSymbol: () => getUnitTypeSymbol(activeUnitType),
   }
 
-  const handleOnUnitToggle = (unit) => {
-    setUnitType(unit);
+  const handleOnLocationSubmit = (searchStr) => {
+    setLocation(searchStr);
   }
 
   useEffect(() => {
       if (location) {
         getZip(location)
           .then(r => {
-            getWeather(r.zip_codes[0], "imperial")
+            getWeather(r.zip_codes[0], activeUnitType)
               .then(rW => {
                 setActiveCity(rW.city.name);
                 setWeatherData(rW);
@@ -50,7 +51,7 @@ function App() {
           })
       }
     },
-    [location]
+    [location,activeUnitType]
   );
 
   useEffect(() => {
@@ -61,36 +62,36 @@ function App() {
     }
   }, [todayWeatherData])
 
+
   return (
     <AppStyled>
-      <SidebarStyled>
-        <div className="sidebar-container">
-          {isSidebarSearchView ? (
-            <SidebarSearch
-              todayWeatherData={todayWeatherData}
-              setIsSidebarSearchView={setIsSidebarSearchView}
-              sidebarError={sidebarError}
-              handleOnLocationSubmit={handleOnLocationSubmit}
-              className="sidebar"
-            />
-          ) : (
-            <SidebarWeather
-              setIsSidebarSearchView={setIsSidebarSearchView}
-              todayWeatherData={todayWeatherData}
-              unitType={unitType}
-              activeCity={activeCity}
-            />
-          )}
-        </div>
-      </SidebarStyled>
-      <Main
-        unitType={unitType}
-        onUnitToggle={setUnitType}
-        className="main"
-        onLoadText="Enter City, State and click Search"
-        fiveDayWeatherData={fiveDayWeatherData}
-        todayWeatherData={todayWeatherData}
-      />
+      <UnitTypeContext.Provider value={UnitTypeProviderValue}>
+        <SidebarStyled>
+          <div className="sidebar-container">
+            {isSidebarSearchView ? (
+              <SidebarSearch
+                todayWeatherData={todayWeatherData}
+                setIsSidebarSearchView={setIsSidebarSearchView}
+                sidebarError={sidebarError}
+                handleOnLocationSubmit={handleOnLocationSubmit}
+                className="sidebar"
+              />
+            ) : (
+              <SidebarWeather
+                setIsSidebarSearchView={setIsSidebarSearchView}
+                todayWeatherData={todayWeatherData}
+                activeCity={activeCity}
+              />
+            )}
+          </div>
+        </SidebarStyled>
+        <Main
+          className="main"
+          onLoadText="Enter City, State and click Search"
+          fiveDayWeatherData={fiveDayWeatherData}
+          todayWeatherData={todayWeatherData}
+        />
+      </UnitTypeContext.Provider>
     </AppStyled>
   );
 }
