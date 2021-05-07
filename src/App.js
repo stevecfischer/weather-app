@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import SidebarSearch from './components/SidebarSearch';
 import Main from './components/Main';
-import { AppStyled } from './appStyled';
-import { getZip } from './helpers/getZip';
+import { AppStyled } from '~/appStyled';
+import { getZip } from '~/helpers/getZip';
 import { getWeather } from './helpers/getWeather';
 import { getUnitTypeSymbol } from './helpers/getUnitTypeSymbol';
 import { SidebarWeather } from './components/SidebarWeather';
@@ -25,6 +25,7 @@ function App() {
     unitTypeSymbol: () => getUnitTypeSymbol(activeUnitType),
   };
 
+  console.log(process.env.PUBLIC_URL, 'pppp');
   const handleOnLocationSubmit = (searchStr) => {
     setLocation(searchStr);
   };
