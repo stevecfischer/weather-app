@@ -1,9 +1,8 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
-
+import styled, { css } from 'styled-components';
 
 const TodaysHighlightsStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       width: 100%;
 
@@ -13,7 +12,7 @@ const TodaysHighlightsStyled = styled.div`
         font-weight: bold;
         font-size: 24px;
         line-height: 28px;
-        color: #E7E7EB;
+        color: #e7e7eb;
         margin-bottom: 30px;
         text-align: left;
       }
@@ -22,13 +21,13 @@ const TodaysHighlightsStyled = styled.div`
 `;
 
 const HighlightBoxStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
-      width: 328px;
-      background-color: #1E213A;
-      color: #E7E7EB;
+      min-width: 328px;
+      background-color: #1e213a;
+      color: #e7e7eb;
       text-align: center;
-      margin:0 20px 20px 0;
+      margin: 0 20px 20px 0;
 
       .highlight-box-heading {
         font-family: Raleway;
@@ -57,18 +56,15 @@ const HighlightBoxStyled = styled.div`
 `;
 
 const HighlightBoxContainer = styled.div`
-  ${props => {
+  ${() => {
     return css`
       display: flex;
       flex-wrap: wrap;
-      width: 100%;
     `;
   }}
 `;
 
-
-const TodaysHighlights = ({todayWeatherData}) => {
-  console.log(todayWeatherData, 'todayWeatherData');
+const TodaysHighlights = ({ todayWeatherData }) => {
   return (
     <TodaysHighlightsStyled>
       <div className="section-heading">Today's Highlights</div>
@@ -83,11 +79,13 @@ const TodaysHighlights = ({todayWeatherData}) => {
         </HighlightBoxStyled>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Visibility</div>
-          <div className="highlight-box-md metric-data">{(todayWeatherData.visibility*0.000621371192).toFixed(0)} miles</div>
+          <div className="highlight-box-md metric-data">
+            {(todayWeatherData.visibility * 0.000621371192).toFixed(0)} miles
+          </div>
         </HighlightBoxStyled>
         <HighlightBoxStyled>
           <div className="highlight-box-heading">Air Pressure</div>
-          <div className="highlight-box-md metric-data">{(todayWeatherData.pressure/100).toFixed(0)} mb</div>
+          <div className="highlight-box-md metric-data">{(todayWeatherData.pressure / 100).toFixed(0)} mb</div>
         </HighlightBoxStyled>
       </HighlightBoxContainer>
     </TodaysHighlightsStyled>

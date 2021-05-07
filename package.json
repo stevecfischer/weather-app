@@ -5,7 +5,8 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^1.0.7",
     "@babel/core": "7.12.3",
-    "@material-ui/core": "^4.11.3",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -29,7 +30,6 @@
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.5",
@@ -79,7 +79,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "test:debug": "react-scripts  --inspect-brk test --no-cache --verbose=false --runInBand"
+    "test:debug": "react-scripts  --inspect-brk test --no-cache --verbose=false --runInBand",
+    "lint:js": "eslint --ext .js ./src"
   },
   "eslintConfig": {
     "extends": [
@@ -155,5 +156,16 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-webdriverio": "^1.0.1",
+    "prettier": "^1.19.1"
   }
 }

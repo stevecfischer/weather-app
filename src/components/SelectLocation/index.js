@@ -8,24 +8,19 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-
 export const SelectLocationStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       margin-bottom: 50px;
     `;
   }}
 `;
 
-const SelectLocation = ({selectedOption, setSelectedOption}) => {
+const SelectLocation = ({ selectedOption, setSelectedOption }) => {
   return (
     <SelectLocationStyled>
       <div className="city-select-dropdown">
-        <Select
-          defaultValue={selectedOption}
-          onChange={() => setSelectedOption()}
-          options={options}
-        />
+        <Select defaultValue={selectedOption} onChange={() => setSelectedOption()} options={options} />
       </div>
     </SelectLocationStyled>
   );

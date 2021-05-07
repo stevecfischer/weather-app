@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Room } from '@material-ui/icons';
 
 export const SearchedCityStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       font-family: Raleway;
       font-style: normal;
@@ -17,12 +18,12 @@ export const SearchedCityStyled = styled.div`
   }}
 `;
 
-
-
-const SearchedCity = ({metric}) => {
+const SearchedCity = ({ metric }) => {
   return (
     <SearchedCityStyled>
-      <div className="searched-city-pin">P</div>
+      <div className="searched-city-pin">
+        <Room />
+      </div>
       <div className="searched-city-name">{metric}</div>
     </SearchedCityStyled>
   );

@@ -1,8 +1,8 @@
-import React, {createContext} from "react";
+import { createContext } from 'react';
 
 const initialState = {
-  unitType: "metric",
-  unitTypeSymbol: "c",
+  unitType: 'metric',
+  unitTypeSymbol: 'c',
   setUnitType: () => {},
 };
 export const UnitTypeContext = createContext(initialState);

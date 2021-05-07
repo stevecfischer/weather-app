@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const MainStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       padding-top: 40px;
-      background-color: #100E1D;
+      background-color: #100e1d;
       width: 66%;
       flex-basis: 0;
       flex-grow: 999;

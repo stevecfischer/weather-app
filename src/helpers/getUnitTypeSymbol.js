@@ -1,8 +1,10 @@
 export const getUnitTypeSymbol = (activeUnitType) => {
-  if(activeUnitType === 'metric'){
-    return "c";
+  let res;
+  if (activeUnitType === 'metric') {
+    res = 'c';
   }
-  if(activeUnitType === 'imperial'){
-    return "f";
+  if (activeUnitType === 'imperial') {
+    res = 'f';
   }
-}
+  return res;
+};

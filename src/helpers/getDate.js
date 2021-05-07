@@ -1,8 +1,8 @@
 const getDate = (unix) => {
   let currentDate;
-  if(unix){
-    currentDate = new Date(unix*1000);
-  }else{
+  if (unix) {
+    currentDate = new Date(unix * 1000);
+  } else {
     currentDate = new Date();
   }
 
@@ -17,6 +17,6 @@ const getDate = (unix) => {
   // )
 
   return currentDate.toLocaleDateString();
-}
+};
 
 export default getDate;

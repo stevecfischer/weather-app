@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
-import styled, {css} from 'styled-components';
-import {UnitTypeContext} from "../../providers/unitType";
+import React, { useContext } from 'react';
+import styled, { css } from 'styled-components';
+import { UnitTypeContext } from '../../providers/unitType';
 
 const CurrentTempStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
-      color: #E7E7EB;
+      color: #e7e7eb;
       margin-bottom: 90px;
 
       .tempInt {
@@ -18,15 +18,15 @@ const CurrentTempStyled = styled.div`
 
       .unitType {
         font-size: 48px;
-        color: #A09FB1;
+        color: #a09fb1;
         line-height: 56px;
       }
     `;
   }}
 `;
 
-const CurrentTemp = ({currentTemp}) => {
-  const {unitTypeSymbol} = useContext(UnitTypeContext);
+const CurrentTemp = ({ currentTemp }) => {
+  const { unitTypeSymbol } = useContext(UnitTypeContext);
   return (
     <CurrentTempStyled>
       <span className="tempInt">{currentTemp.toFixed(0)}</span>

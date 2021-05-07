@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const AppStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       display: flex;
       flex-wrap: wrap;
       height: 100vh;
-      color: #E7E7EB;
+      color: #e7e7eb;
 
       input,
       label,
@@ -48,11 +48,11 @@ export const AppStyled = styled.div`
       /* These elements are usually rendered a certain way by the browser */
 
       button,
-      input[type=reset],
-      input[type=button],
-      input[type=submit],
-      input[type=checkbox],
-      input[type=radio],
+      input[type='reset'],
+      input[type='button'],
+      input[type='submit'],
+      input[type='checkbox'],
+      input[type='radio'],
       select {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -62,27 +62,27 @@ export const AppStyled = styled.div`
       /* Text Inputs
       -----------------------------------------------*/
 
-      input[type=date],
-      input[type=datetime],
-      input[type=datetime-local],
-      input[type=email],
-      input[type=month],
-      input[type=number],
-      input[type=password],
-      input[type=range],
-      input[type=search],
-      input[type=tel],
-      input[type=text],
-      input[type=time],
-      input[type=url],
-      input[type=week] {
+      input[type='date'],
+      input[type='datetime'],
+      input[type='datetime-local'],
+      input[type='email'],
+      input[type='month'],
+      input[type='number'],
+      input[type='password'],
+      input[type='range'],
+      input[type='search'],
+      input[type='tel'],
+      input[type='text'],
+      input[type='time'],
+      input[type='url'],
+      input[type='week'] {
       }
 
       /* Button Controls
       -----------------------------------------------*/
 
-      input[type=checkbox],
-      input[type=radio] {
+      input[type='checkbox'],
+      input[type='radio'] {
         width: 13px;
         height: 13px;
       }
@@ -90,8 +90,7 @@ export const AppStyled = styled.div`
       /* File Uploads
       -----------------------------------------------*/
 
-      input[type=file] {
-
+      input[type='file'] {
       }
 
       /* Search Input
@@ -99,7 +98,7 @@ export const AppStyled = styled.div`
 
       /* Make webkit render the search input like a normal text field */
 
-      input[type=search] {
+      input[type='search'] {
         -webkit-appearance: textfield;
         -webkit-box-sizing: content-box;
       }
@@ -114,9 +113,9 @@ export const AppStyled = styled.div`
       -----------------------------------------------*/
 
       button,
-      input[type="reset"],
-      input[type="button"],
-      input[type="submit"] {
+      input[type='reset'],
+      input[type='button'],
+      input[type='submit'] {
         /* Fix IE7 display bug */
         overflow: visible;
         width: auto;

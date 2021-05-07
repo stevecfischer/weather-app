@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components';
-import cloudyBg from "../../img/Cloud-background.png";
+import cloudyBg from '../../img/Cloud-background.png';
 
 export const SidebarStyled = styled.div`
-  ${props => {
+  ${() => {
     return css`
       padding-top: 40px;
-      background-color: #1E213A;
+      background-color: #1e213a;
       flex-basis: 33%;
       flex-grow: 1;
 
-      
       .sidebar-container {
         width: 80%;
         margin: 0 auto;
@@ -18,26 +17,23 @@ export const SidebarStyled = styled.div`
         flex-direction: column;
         justify-content: flex-start;
       }
-      
-      
+
       .current-weather-icon {
         display: inline-block;
         margin-bottom: 90px;
       }
-      
-      
-      // &::after{
-      //   content: ""; // ::before and ::after both require content
+
+      // &::after {
+      //   content: ''; // ::before and ::after both require content
       //   position: absolute;
       //   top: 0;
       //   left: 0;
       //   width: 80%;
       //   height: 100%;
       //   background: url(${cloudyBg}) no-repeat;
-      //   opacity: .25;
+      //   opacity: 0.25;
       // }
-      
-      
+
       .close-button {
         color: #fff;
         font-size: 25px;
@@ -45,7 +41,7 @@ export const SidebarStyled = styled.div`
         text-align: right;
         cursor: pointer;
       }
-      
+
       .search-bar-container {
         width: 100%;
         margin-bottom: 30px;
@@ -56,9 +52,9 @@ export const SidebarStyled = styled.div`
         justify-content: space-between;
         width: 100%;
       }
-      
+
       .search-bar .city-search {
-        border: 1px solid #E7E7EB;
+        border: 1px solid #e7e7eb;
         box-sizing: border-box;
         width: 268px;
         height: 48px;
@@ -70,14 +66,14 @@ export const SidebarStyled = styled.div`
         line-height: 19px;
         padding-left: 10px;
       }
-      
+
       .city-search-submit {
         width: 86px;
         height: 48px;
-        background-color: #3C47E9;
-        color: #E7E7EB;
+        background-color: #3c47e9;
+        color: #e7e7eb;
       }
-      
+
       .previous-searched-cities {
         font-family: Raleway;
         font-style: normal;
